@@ -1,0 +1,130 @@
+<head>
+  <title>graphics</title>
+</head>
+
+<body>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+    <!-- Simple header with scrollable tabs. -->
+
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="radius">
+              <label class="mdl-textfield__label" for="radius">Enter the radius</label>
+            </div>
+  <button id="midpointgo" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">GO</span>
+        Calculate first octant
+  </button>
+      {{#if point}}
+  <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+    <thead>
+      <tr>
+        <th>K</th>
+        <th>P(k)</th>
+        <th>Plot</th>
+        <th></th>
+      </tr>
+    </thead>
+{{#each point}}
+<tr>
+  <td>{{@index}}</td>
+   <td class="mdl-data-table__cell--non-numeric">{{pv}}</td>
+   <td>({{xp}}, {{yp}})</td>
+   <td>{{#if lessthan xp yp}}{{#if isnegative pv}} P({{addone @index}}) = {{pv}} + 2*{{xp}} +1 {{else}} P({{addone @index}}) = {{pv}} + 2*{{xp}} +1 - 2*{{yp}} {{/if}}{{/if}}</td>
+ </tr>
+{{/each}}
+</table>
+{{/if}}
+<div style="break:both;"></div>
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" type="text" id="dda-x0">
+  <label class="mdl-textfield__label" for="dda-x0">X0</label>
+</div>
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" type="text" id="dda-y0">
+  <label class="mdl-textfield__label" for="dda-y0">Y0</label>
+</div>
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" type="text" id="dda-x1">
+  <label class="mdl-textfield__label" for="dda-x1">X1</label>
+</div>
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" type="text" id="dda-y1">
+  <label class="mdl-textfield__label" for="dda-y1">Y1</label>
+</div>
+<button id="ddago" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+<span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">GO</span>
+DDA
+</button>
+{{#if ddap}}
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<thead>
+<tr>
+  <th>x</th>
+  <th>y</th>
+  <th>Plot</th>
+  <th></th>
+</tr>
+</thead>
+{{#each ddap}}
+<tr>
+<td>{{@index}}</td>
+<td class="mdl-data-table__cell--non-numeric">{{xp}}</td>
+<td class="mdl-data-table__cell--non-numeric">{{yp}}</td>
+<td>({{nxp}}, {{nyp}})</td>
+</tr>
+{{/each}}
+</table>
+{{/if}}
+<div style="break:both;"></div>
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" type="text" id="bers-x0">
+  <label class="mdl-textfield__label" for="bers-x0">X0</label>
+</div>
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" type="text" id="bers-y0">
+  <label class="mdl-textfield__label" for="bers-y0">Y0</label>
+</div>
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" type="text" id="bers-x1">
+  <label class="mdl-textfield__label" for="bers-x1">X1</label>
+</div>
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" type="text" id="bers-y1">
+  <label class="mdl-textfield__label" for="bers-y1">Y1</label>
+</div>
+<button id="bersgo" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+<span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">GO</span>
+Bersenham's
+</button>
+{{#if bersp}}
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<thead>
+<tr>
+  <th>k</th>
+  <th>Pk</th>
+  <th>Plot</th>
+  <th>2x</th>
+  <th>2y</th>
+  <th></th>
+  <th></th>
+</tr>
+</thead>
+{{#each bersp}}
+<tr>
+<td>{{@index}}</td>
+<td class="mdl-data-table__cell--non-numeric">{{pv}}</td>
+<td class="mdl-data-table__cell--non-numeric">({{xp}},{{yp}})</td>
+<td class="mdl-data-table__cell--non-numeric">{{double xp}}</td>
+<td class="mdl-data-table__cell--non-numeric">{{double yp}}</td>
+<td class="mdl-data-table__cell--non-numeric"> {{#if isnegative pv}} P({{addone @index}})= {{pv}} + {{double yp}} {{else}} P({{addone @index}})= {{pv}} + {{double yp}} - {{double xp}} {{/if}}</td>
+
+</tr>
+{{/each}}
+</table>
+{{/if}}
+<p>Developed by <a href="http://ihabshea.me">Ihab McShea</a>.</p>
+</template>
