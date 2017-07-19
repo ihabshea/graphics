@@ -1,0 +1,2 @@
+{"{}/client/main.scss":"1a347248470a8d61bee5de2b4305f4bde3d8cd1a"}
+{"css":"\n/*# sourceMappingURL=.main.scss.map */","sourceMap":{"version":3,"sourceRoot":".","file":".main.scss","sources":["./client/main.scss"],"sourcesContent":["$fakevariable : blue;"],"mappings":"","names":[]}}
